@@ -13,10 +13,14 @@ int main() {
     const int movimento_torre = 5;
     const int movimento_bispo = 5;
     const int movimento_rainha = 8;
+    const int movimento_cavalo_horizontal = 1;
+    const int movimento_cavalo_vertical = 2;
 
     int i, escolhajogador;
     int contador_rainha = 0;
     int contador_bispo = 0;
+    int contador_cavalo_horizontal;
+    int contador_cavalo_vertical;
 
     // Menu de escolha da Peça de Xadrez
 
@@ -25,6 +29,7 @@ int main() {
     printf("1. Torre\n");
     printf("2. Bispo\n");
     printf("3. Rainha\n");
+    printf("4. Cavalo\n");
     printf("Escolha uma opção válida!\n");
     scanf("%d", &escolhajogador);
 
@@ -81,16 +86,37 @@ int main() {
         printf("Movimento da Rainha concluído!");
 
         break;
+    
+    // Nível Aventureiro - Movimentação do Cavalo
+    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
+    // Um loop pode representar a movimentação horizontal e outro vertical.    
+
+    case 4:
+        printf("*** Peça Escolhida: Cavalo ***\n");
+        printf("\n");
+        printf("Começando movimento, %d casas para baixo e %d casa para a esquerda...\n", movimento_cavalo_vertical, movimento_cavalo_horizontal);
+        
+        contador_cavalo_horizontal = 1;
+
+        while (contador_cavalo_horizontal--)
+        {
+            for (contador_cavalo_vertical = 0; contador_cavalo_vertical < 2; contador_cavalo_vertical++)
+            {
+                printf("Baixo\n");
+            }
+            
+            printf("Esquerda\n");
+        }
+        
+        printf("Movimento do Cavalo concluído!");
+
+        break;
     default:
         printf("Opção Inválida!\n");
         break;
     }
-
     
 
-    // Nível Aventureiro - Movimentação do Cavalo
-    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
-    // Um loop pode representar a movimentação horizontal e outro vertical.
 
     // Nível Mestre - Funções Recursivas e Loops Aninhados
     // Sugestão: Substitua as movimentações das peças por funções recursivas.
