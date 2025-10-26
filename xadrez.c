@@ -4,9 +4,50 @@
 // Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
 // O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
 
+// Funções para movimentação das peças
+// Função recursiva para movimentação da Rainha
+
+void movimentorainha(int casas){
+    if (casas > 0)
+    {
+        printf("Esquerda\n");
+        movimentorainha(casas - 1);
+    }
+}
+
+// Função recursiva para movimentação da Torre
+
+void movimentotorre(int casas){
+    if (casas > 0)
+    {
+        printf("Direita\n");
+        movimentotorre(casas - 1);
+    }
+}
+
+// Função para movimentação do Bispo
+
+void movimentobispo(int casas){
+    // Garantir entrada válida
+    if (casas <= 0) return;
+    // Loop externo: movimento horizontal (direita)
+    for (int h = 0; h < casas; h++)
+    {
+        // Loop interno: movimento vertical (cima)
+        // Aqui o loop interno executa 1 iteração por passo horizontal (imprime "Cima").
+        for (int v = 0; v < 1; v++)
+        {
+            printf("Cima\n");
+        }
+        // Movimento horizontal após os passos verticais
+        printf("Direita\n");
+    }
+}
+
+// Função principal
+// Esta função é responsável por gerenciar a execução do programa e a interação com o usuário.
+
 int main() {
-    // Nível Novato - Movimentação das Peças
-    // Sugestão: Declare variáveis constantes para representar o número de casas que cada peça pode se mover.
 
     //Declaração de Variaveis e seus incrementos
 
@@ -17,10 +58,6 @@ int main() {
     const int movimento_cavalo_vertical = 2;
 
     int i, escolhajogador;
-    int contador_rainha = 0;
-    int contador_bispo = 0;
-    int contador_cavalo_horizontal;
-    int contador_cavalo_vertical;
 
     // Menu de escolha da Peça de Xadrez
 
@@ -33,9 +70,8 @@ int main() {
     printf("Escolha uma opção válida!\n");
     scanf("%d", &escolhajogador);
 
-    //Estrutura de repetições dentro do Switch, cada peça com uma estrutura diferente...
-    // Implementação de Movimentação da Torre
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Torre para a direita.
+    // Estrutura de impressão dentro do Switch...
+    // Impressão de Movimentação da Torre
 
     switch (escolhajogador)
     {
@@ -43,87 +79,70 @@ int main() {
         printf("*** Peça Escolhida: Torre ***\n");
         printf("\n");
         printf("Começando movimento, %d casas para a direita...\n", movimento_torre);
-        for (i = 0; i < movimento_torre; i++)
-        {
-            printf("Direita\n");
-        }
+        
+        movimentotorre(5);
             
         printf("Movimento da Torre concluído!");
 
         break;
 
-    // Implementação de Movimentação do Bispo
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação do Bispo em diagonal.
-
+    // Impressão de Movimentação do Bispo
+    
     case 2:
         printf("*** Peça Escolhida: Bispo ***\n");
         printf("\n");
         printf("Começando movimento, %d casas na diagonal superior direita...\n", movimento_bispo);
-        do
-        {
-            printf("Cima\n");
-            printf("Direita\n");
-            contador_bispo++;
-        } while (contador_bispo < movimento_bispo);
+        
+        movimentobispo(5);
         
         printf("Movimento do Bispo concluído!");
 
         break;
 
-    // Implementação de Movimentação da Rainha
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Rainha para a esquerda.
+   // Impressão de Movimentação da Rainha
 
     case 3:
         printf("*** Peça Escolhida: Rainha ***\n");
         printf("\n");
         printf("Começando movimento, %d casas para a esquerda...\n", movimento_rainha);
-        while (contador_rainha < movimento_rainha)
-        {
-            printf("Esquerda\n");
-            contador_rainha++;
-        }
+        
+        movimentorainha(8);
 
         printf("Movimento da Rainha concluído!");
 
         break;
-    
-    // Nível Aventureiro - Movimentação do Cavalo
-    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
-    // Um loop pode representar a movimentação horizontal e outro vertical.    
 
-    case 4:
+    // Impressão de Movimentação do Cavalo
+
+    case 4: {
         printf("*** Peça Escolhida: Cavalo ***\n");
         printf("\n");
-        printf("Começando movimento, %d casas para baixo e %d casa para a esquerda...\n", movimento_cavalo_vertical, movimento_cavalo_horizontal);
-        
-        contador_cavalo_horizontal = 1;
+        printf("Começando movimento, %d casas para cima e %d casa para a direita...\n", movimento_cavalo_vertical, movimento_cavalo_horizontal);
 
-        while (contador_cavalo_horizontal--)
+        // Declarar variáveis dentro de um bloco...
+        
+        int cavalo_horizontal = 1;
+        int cavalo_vertical = 0;
+
+        while (cavalo_horizontal--)
         {
-            for (contador_cavalo_vertical = 0; contador_cavalo_vertical < 2; contador_cavalo_vertical++)
+            for (cavalo_vertical = 0, cavalo_horizontal = 0; cavalo_vertical < 2 && cavalo_horizontal < 1; cavalo_vertical++)
             {
-                printf("Baixo\n");
+                printf("Cima\n");
+                continue;
             }
-            
-            printf("Esquerda\n");
+            printf("Direita\n");
+            break;
         }
         
         printf("Movimento do Cavalo concluído!");
-
+        
         break;
+    }
     default:
         printf("Opção Inválida!\n");
         break;
     }
-    
-
-
-    // Nível Mestre - Funções Recursivas e Loops Aninhados
-    // Sugestão: Substitua as movimentações das peças por funções recursivas.
-    // Exemplo: Crie uma função recursiva para o movimento do Bispo.
-
-    // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
-    // Inclua o uso de continue e break dentro dos loops.
 
     return 0;
 }
